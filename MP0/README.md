@@ -130,14 +130,14 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
 
 <ul>
   <li>
-    <p>CHARSET</p>
-
-    A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.
+    <p>
+      CHARSET : A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.
+    </p>
   </li>
   <li>
-    <p>INPUT_FILE</p>
-
-    <p>It’s an optional filename. Your program reads from it if specified. Otherwise your program reads from <em>standard input</em>. In the case INPUT_FILE does not exist, your program should print “error\n” to <em>standard error</em> and exit normally.</p>
+    <p>
+      INPUT_FILE : It’s an optional filename. Your program reads from it if specified. Otherwise your program reads from <em>standard input</em>. In the case INPUT_FILE does not exist, your program should print “error\n” to <em>standard error</em> and exit normally.
+    </p>
   </li>
 </ul>
 
