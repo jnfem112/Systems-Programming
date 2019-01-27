@@ -388,10 +388,10 @@ LoserFS depends on timestamps to sort the commits. It’s critically flawed beca
 <h2 id="resources">Resources</h2>
 
 <ul>
-  <li>Download the <a href="/mp2/sample_code_v1.tar.xz">example code</a> to boostrap your work.</li>
-  <li>You can either start from your MP1 or this example <a href="/mp2/example_mp1_v1.tar.xz">MP1 code</a>.</li>
-  <li>UNIX domain socket <a href="/mp2/unix_socket.html">tutorial</a></li>
-  <li>Remeber to take a look at <a href="/mp2/conflict_resolution.html">conflict resolution rules</a></li>
+  <li>Download the <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/sample_code_v1.tar.xz">example code</a> to boostrap your work.</li>
+  <li>You can either start from your MP1 or this example <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/example_mp1_v1.tar.xz">MP1 code</a>.</li>
+  <li>UNIX domain socket <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/SOCKET.md">tutorial</a></li>
+  <li>Remeber to take a look at <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/RULE.md">conflict resolution rules</a></li>
 </ul>
 
   </div>
