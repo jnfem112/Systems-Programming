@@ -94,7 +94,6 @@ Margaret Hamilton<span class="se">\n</span>
 
 <span class="c"># or single quotes</span>
 ./char_count <span class="s1">''</span> input.txt
-
 <span class="c"># this one is wrong since input.txt is treated as this first argument</span>
 <span class="c"># ./char_count input.txt</span>
 </code></pre></div></div>
