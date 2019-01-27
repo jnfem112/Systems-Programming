@@ -132,7 +132,7 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
   <li>
     <p>CHARSET</p>
 
-    <p>A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.</p>
+    A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.
   </li>
   <li>
     <p>INPUT_FILE</p>
