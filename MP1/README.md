@@ -70,15 +70,23 @@
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>其中各項意義為：
     1. number of commit : 代表是第幾次 commit，由 1 開始計算，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     2. number of file : 代表某個給定目錄路徑底下有多少個檔案，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     3. number of add : 代表相對於前一次 commit ，有多少個之前不存在的檔案，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     4. number of modify : 代表相對於前一次 commit ，有多少個之前存在但被修改過的檔案，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     5. number of copy : 代表有多少個檔案是由前一次 commit 中紀錄的檔案複製而來，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     6. number of delete : 代表相對於前一次commit，有多少個之前存在，但現在不存在的檔案，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     7. commit size : 整個 commit 所佔用的 byte 數目，大小為 4 bytes unsigned integer (uint32_t)
+    <br>
     接下來，分別對於 n 個 add/modify/copy/delete 以字典順序紀錄 n 筆 檔名長度與檔名，其格式為
         file name size(uint8_t)，file name(&lt; 255 bytes)
     要注意的是，copy 項目須依序紀錄複製來源及複製結果兩者的長度及檔名
+    <br>
     最後，要以字典順序記錄給定目錄路徑下所有的檔案名稱及其 md5 ，其格式為
         fiil name size(uint_8)，file name(&lt; 255 bytes)，md5 (16 bytes)
 </code></pre></div></div>
@@ -159,7 +167,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 </code></pre></div></div>
 <p>每次執行會計算與上次 commit 的差異並追加到 .loser_record 檔案的末尾。</p>
 
-<p>格式見 <a href="#.loser_record">.loser_record</a> 一節。</p>
+<p>格式見 <a href=".loser_record">.loser_record</a> 一節。</p>
 
 <p>MD5 部分則記錄<strong>目錄底下的所有檔案</strong>（.loser_record 除外）與其 MD5 的對應。</p>
 
