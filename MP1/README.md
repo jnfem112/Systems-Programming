@@ -204,6 +204,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 &lt;檔名&gt; &lt;md5&gt;
 .
 .
+<br>
 # commit n-1
 .
 .
