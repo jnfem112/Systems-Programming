@@ -1,6 +1,6 @@
-# NTU - System Programming (2018 Fall)
+# NTU - Systems Programming (2018 Fall)
 
-## MP0 : Introduction to System Programming
+## MP0 : Introduction to Systems Programming
 
 ## MP1 : MD5 Version Controll
 
