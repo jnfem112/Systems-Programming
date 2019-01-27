@@ -39,7 +39,7 @@
 -->
 
   <div class="post-content">
-    <h1 id="machine-problem-2---loserfs-easy-peer-to-peer-filesystem">Machine Problem 2 - LoserFS: Easy peer-to-peer filesystem</h1>
+    <h1 id="machine-problem-2---loserfs-easy-peer-to-peer-filesystem">Machine Problem 2 - LoserFS : Easy Peer-to-Peer Filesystem</h1>
 
 <ul>
   <li>Early bird bonus deadline: 11:59 PM, 2018/11/21.</li>
@@ -102,7 +102,7 @@ love_letter.txt
 love_letter.txt 51dfcbaeb6beab0729f6aca504cc429b
 (timestamp)
 1541611000000
-
+<br>
 # commit 2
 [new_file]
 QQ.txt
@@ -201,7 +201,6 @@ repo = /home/resol/repo
 <ul>
   <li>
     <p><strong>list</strong></p>
-
     <p>This commands shows the <em>most recent</em> logical view. It lists all filenames in dictionary order and their digest. In the <em>Resol</em> and <em>Reep</em> example above, the output should be:</p>
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>QQ.txt
 thanks_good_guy.txt
@@ -212,7 +211,6 @@ thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
   </li>
   <li>
     <p><strong>history [-a]</strong></p>
-
     <p>Without <code class="highlighter-rouge">-a</code> option, it shows the commits history of local repository ordered by timestamp. In our example, the output should be the following for peer <em>Resol</em>:</p>
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># commit 1
 [new_file]
@@ -224,7 +222,7 @@ love_letter.txt
 love_letter.txt 51dfcbaeb6beab0729f6aca504cc429b
 (timestamp)
 1541611000000
-
+<br>
 # commit 2
 [new_file]
 QQ.txt
@@ -237,7 +235,6 @@ QQ.txt 7e56035a736d269ad670f312496a0846
 (timestamp)
 1541611500000
 </code></pre></div>    </div>
-
     <p>With <code class="highlighter-rouge">-a</code> option supplied, it prints the <em>merged</em> commit history from all peers. You make to make sure every peer have identical output and obey the ordering rules.</p>
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># commit 1
 [new_file]
@@ -249,7 +246,7 @@ love_letter.txt
 love_letter.txt 51dfcbaeb6beab0729f6aca504cc429b
 (timestamp)
 1541611000000
-
+<br>
 # commit 2
 [new_file]
 thanks_good_guy.txt
@@ -260,7 +257,7 @@ thanks_good_guy.txt
 thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
 (timestamp)
 1541611200000
-
+<br>
 # commit 3
 [new_file]
 QQ.txt
@@ -273,29 +270,23 @@ QQ.txt 7e56035a736d269ad670f312496a0846
 (timestamp)
 1541611500000
 </code></pre></div>    </div>
-
     <p>Note the format differs from MP1. MD5 digest is calculated only for file creation and modification, and extra <em>(timestamp)</em> in milliseconds is provided. <strong>(update)</strong> The last commit in output does not have extra line breaks.</p>
   </li>
   <li>
     <p><strong>cp SOURCE DEST</strong></p>
-
     <p>UNIX-style file copy. The <em>SOURCE</em> and <em>DEST</em> paths can be either a local file, such as <code class="highlighter-rouge">/etc/passwd</code>, or a file inside LoserFS, prefixed with @. For example, <code class="highlighter-rouge">cp /etc/fstab @target.txt</code> copies <code class="highlighter-rouge">/etc/fstab</code> from local machine to <code class="highlighter-rouge">target.txt</code> in LoserFS. <code class="highlighter-rouge">cp @myfile.txt /tmp/target.txt</code> does similarly.</p>
-
     <p>If <em>SOURCE</em> does not exist, print <code class="highlighter-rouge">fail</code> in stdout, otherwise print <code class="highlighter-rouge">success</code> once it completes. <em>DEST</em> file may be replaced if it already exists.</p>
   </li>
   <li>
     <p><strong>mv SOURCE DEST</strong></p>
-
     <p>UNIX-style file renaming. Like <code class="highlighter-rouge">cp</code> command, we can specify local machine file and LoserFS file in <em>SOURCE</em> and <em>DEST</em>. If <em>SOURCE</em> does not exist or cannot be un, do nothing but print <code class="highlighter-rouge">fail</code> in stdout, otherwise print <code class="highlighter-rouge">success</code> once it completes. <em>DEST</em> file may be replaced if it already exists.</p>
   </li>
   <li>
     <p><strong>rm FILE</strong></p>
-
     <p>UNIX-style file deletion. This command can ONLY removes files in LoserFS. Hence, FILE is always prefixed with @ like <code class="highlighter-rouge">rm @myfile.txt</code>.</p>
   </li>
   <li>
     <p><strong>exit</strong></p>
-
     <p>Cause the program print <code class="highlighter-rouge">bye</code> and exit normally. If there’s an ongoing file copy session, the program waits until all sessions completes.</p>
   </li>
 </ul>
