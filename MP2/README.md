@@ -146,7 +146,7 @@ thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
 
 <h3 id="conflict-resolution">Conflict resolution</h3>
 
-<p>What if <em>Resol</em> and <em>Reep</em> creates the same file or modify a file at the same time? We have a set of <em>ordering</em> and <em>conflict resolution</em> rules to determine which commit goes first. Checkout this <a href="/mp2/conflict_resolution.html">document</a> to understand the rules.</p>
+<p>What if <em>Resol</em> and <em>Reep</em> creates the same file or modify a file at the same time? We have a set of <em>ordering</em> and <em>conflict resolution</em> rules to determine which commit goes first. Checkout this <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/RULE.md">document</a> to understand the rules.</p>
 
 <h3 id="update-summary"><strong>(update)</strong> Summary</h3>
 
@@ -160,9 +160,9 @@ thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
 
 <h3 id="the-big-picture">The big picture</h3>
 
-<p><img src="/mp2/arch_digram.svg" alt="The big picture of LoserFS" /></p>
+<p><img src="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/LoserFS.svg" alt="The big picture of LoserFS" /></p>
 
-<p>Our architecture supports arbitrary number of loser_peer processes. They connect to each other over <strong>UNIX domain sockets</strong>. This socket looks like a normal file, and yes, it has a filename, except that input/output to this file is handled by your process. See <a href="/mp2/unix_socket.html">here</a> for examples.</p>
+<p>Our architecture supports arbitrary number of loser_peer processes. They connect to each other over <strong>UNIX domain sockets</strong>. This socket looks like a normal file, and yes, it has a filename, except that input/output to this file is handled by your process. See <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/SOCKET.md">here</a> for examples.</p>
 
 <p>In this picture, peer1 owns the socket at <code class="highlighter-rouge">/tmp/mp2-peer1.sock</code>, peer2 owns <code class="highlighter-rouge">/tmp/mp2-peer2.sock</code>, and so on. Peer1 connects to <code class="highlighter-rouge">mp2-peer2.sock</code> and other three sockets. Conversely, peer1 accepts connections from other four peers. In this way, peers talks to each other by sending/receiving bytes. You have to <strong>design the protocol between the peers</strong>.</p>
 
