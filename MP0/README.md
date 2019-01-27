@@ -143,7 +143,7 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
 
 <p>The input consists of printable characters, spaces, and ‘\n’. Your job is to count the occurences of characters in CHARSET for each line, and print the number of occurences respectively.</p>
 
-<p>For example, suppose the CHARSET is “xyz” and your program encounters a line “<strong>y</strong>ep.tar.<strong>xz</strong>\n”, it should output “3\n” (‘\n’ is new line character). Other examples are listed in <a href="/mp0/EXAMPLE.html">example page</a>. Implementation details can be found in <a href="/mp0/QandA.html">Q&amp;A page</a>.</p>
+<p>For example, suppose the CHARSET is “xyz” and your program encounters a line “<strong>y</strong>ep.tar.<strong>xz</strong>\n”, it should output “3\n” (‘\n’ is new line character). Other examples are listed in <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP0/README/Example.md">example page</a>. Implementation details can be found in <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP0/README/Q%26A.md">Q&amp;A page</a>.</p>
 
 <h4 id="time-limit">Time Limit</h4>
 <ul>
@@ -160,7 +160,7 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
   <li><strong>The input can be arbitrarily large and lines can be arbitrarily long.</strong></li>
 </ul>
 
-<h3 id="example"><a href="https://systemprogrammingatntu.github.io/mp0/EXAMPLE">Example</a></h3>
+<h3 id="example"><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP0/README/Example.md">Example</a></h3>
 
 <h2 id="submit-your-homework-to-github">Submit your homework to GitHub</h2>
 
