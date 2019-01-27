@@ -130,13 +130,13 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
 
 <ul>
   <li>
-    <p>
-      CHARSET : A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.
+    <p>CHARSET<br>
+      A set of <a href="http://www.cplusplus.com/reference/cctype/isprint/">printable characters</a> and <a href="http://www.cplusplus.com/reference/cctype/isspace/">spaces</a>. Characters are guaranteed to be unique.
     </p>
   </li>
   <li>
-    <p>
-      INPUT_FILE : It’s an optional filename. Your program reads from it if specified. Otherwise your program reads from <em>standard input</em>. In the case INPUT_FILE does not exist, your program should print “error\n” to <em>standard error</em> and exit normally.
+    <p>INPUT_FILE<br>
+      It’s an optional filename. Your program reads from it if specified. Otherwise your program reads from <em>standard input</em>. In the case INPUT_FILE does not exist, your program should print “error\n” to <em>standard error</em> and exit normally.
     </p>
   </li>
 </ul>
@@ -184,9 +184,9 @@ git commit <span class="nt">-m</span> <span class="s1">'The job description'</sp
 
 <ul>
   <li>
-    <p>Manpages</p>
-
-    <p><code class="highlighter-rouge">man fprintf</code> shows the manual for <code class="highlighter-rouge">fprintf</code> function in C standard library, <code class="highlighter-rouge">man ls</code> shows the manual for <code class="highlighter-rouge">ls</code> shell command, etc.</p>
+    <p>Manpages<br>
+      <code class="highlighter-rouge">man fprintf</code> shows the manual for <code class="highlighter-rouge">fprintf</code> function in C standard library, <code class="highlighter-rouge">man ls</code> shows the manual for <code class="highlighter-rouge">ls</code> shell command, etc.
+    </p>
   </li>
   <li>Git
     <ol>
