@@ -383,7 +383,7 @@ LoserFS depends on timestamps to sort the commits. It’s critically flawed beca
 
 <h3 id="example-test-cases">Example test cases</h3>
 
-<p>TA acknowledges the openess of this spec. Please take a look at <a href="/mp2/test_cases.html">examples test cases</a>. Hope it make things more clear.</p>
+<p>TA acknowledges the openess of this spec. Please take a look at <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/EXAMPLE.md">examples test cases</a>. Hope it make things more clear.</p>
 
 <h2 id="resources">Resources</h2>
 
