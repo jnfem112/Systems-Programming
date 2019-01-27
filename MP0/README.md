@@ -38,7 +38,7 @@
         <article class="post">
 -->
 
-<h1 id="machine-problem-0---introduction-to-system-programming">Machine Problem 0 - Introduction to System Programming</h1>
+<h1 id="machine-problem-0---introduction-to-system-programming">Machine Problem 0 - Introduction to Systems Programming</h1>
 
 <ul>
   <li>Due Date: 11:59 PM, Oct. 2, 2018</li>
