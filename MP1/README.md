@@ -204,7 +204,6 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 &lt;檔名&gt; &lt;md5&gt;
 .
 .
-
 # commit n-1
 .
 .
@@ -220,7 +219,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 
 <h2 id="更多範例">更多範例</h2>
 
-<p>參考<a href="/mp1/EXAMPLE.html">這裡</a></p>
+<p>參考<a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/Example.md">這裡</a></p>
 
 <h2 id="實作細節">實作細節</h2>
 
@@ -290,7 +289,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 <ul>
   <li><a href="https://zh.wikipedia.org/wiki/MD5">MD5 - 維基百科，自由的百科全書</a></li>
   <li><a href="https://www.byvoid.com/zht/blog/cpp-fstream">c++ binary io</a></li>
-  <li><a href="/mp1/EXAMPLE.html">範例頁</a></li>
+  <li><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/Example.md">範例頁</a></li>
   <li><a href="https://zh.wikipedia.org/wiki/字节序">endian</a></li>
 </ul>
 
