@@ -91,7 +91,6 @@ Margaret Hamilton<span class="se">\n</span>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># use double quotes</span>
 ./char_count <span class="s2">""</span> input.txt
-
 <span class="c"># or single quotes</span>
 ./char_count <span class="s1">''</span> input.txt
 <span class="c"># this one is wrong since input.txt is treated as this first argument</span>
