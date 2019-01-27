@@ -66,7 +66,7 @@
 
 <p>本次作業限定以 Bainry I/O 對 .loser_record 進行操作，且 .loser_record 必須依照此處所規定的格式：</p>
 
-<p><img src="https://i.imgur.com/DqZdIEV.png" alt="commit struct" /></p>
+<p><img src="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/loser_record.png" alt="commit struct" /></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>其中各項意義為：
     1. number of commit : 代表是第幾次 commit，由 1 開始計算，大小為 4 bytes unsigned integer (uint32_t)
