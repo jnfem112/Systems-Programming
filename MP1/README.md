@@ -167,7 +167,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 </code></pre></div></div>
 <p>每次執行會計算與上次 commit 的差異並追加到 .loser_record 檔案的末尾。</p>
 
-<p>格式見 <a href=".loser_record">.loser_record</a> 一節。</p>
+<p>格式見 <a href="#.loser_record">.loser_record</a> 一節。</p>
 
 <p>MD5 部分則記錄<strong>目錄底下的所有檔案</strong>（.loser_record 除外）與其 MD5 的對應。</p>
 
