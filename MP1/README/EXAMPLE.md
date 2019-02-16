@@ -41,7 +41,7 @@
     <h1 id="mp1-範例">MP1 範例</h1>
 
 <h2 id="測資範例">測資範例</h2>
-<p><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/test_1.zip">test_1</a></p>
+<p><a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/test_1.zip">test_1</a></p>
 
 <p>將測資下載並解壓縮後放到跟loser同資料夾
 目錄結構長這樣：</p>
@@ -86,7 +86,7 @@ a 60b725f10c9c85c70d97880dfe8191b3
 最後一次 commit 之後，新增了 e 檔案，修改了 b 檔案，從 c 複製出 f ，並把 a 刪除。</p>
 
 <p>範例輸出導到檔案應該要與此檔案相同
-<a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/example_log">Example of log</a></p>
+<a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/example_log">Example of log</a></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;./loser status test_1/
 [new_file]
@@ -99,7 +99,7 @@ c =&gt; f
 a
 </code></pre></div></div>
 <p>範例輸出導到檔案應該要與此檔案相同
-<a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/example_status">Example of status</a></p>
+<a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/example_status">Example of status</a></p>
 
 <p>.loser_record 的 binery format:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;hexdump  -x test_1/.loser_record
@@ -117,7 +117,7 @@ a
 </code></pre></div></div>
 <h2 id="大測試資料">大測試資料</h2>
 
-<p><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/test_max.zip">test_max</a></p>
+<p><a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/test_max.zip">test_max</a></p>
 
 <p>此測試資料中含一個 commit。該次 commit 有 1000 個檔案。
 然後資料夾中有 1000 個新的檔案，舊的檔案全數刪除，每個檔案皆為 100kB。</p>
