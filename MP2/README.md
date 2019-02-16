@@ -146,7 +146,7 @@ thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
 
 <h3 id="conflict-resolution">Conflict resolution</h3>
 
-<p>What if <em>Resol</em> and <em>Reep</em> creates the same file or modify a file at the same time? We have a set of <em>ordering</em> and <em>conflict resolution</em> rules to determine which commit goes first. Checkout this <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/RULE.md">document</a> to understand the rules.</p>
+<p>What if <em>Resol</em> and <em>Reep</em> creates the same file or modify a file at the same time? We have a set of <em>ordering</em> and <em>conflict resolution</em> rules to determine which commit goes first. Checkout this <a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/RULE.md">document</a> to understand the rules.</p>
 
 <h3 id="update-summary"><strong>(update)</strong> Summary</h3>
 
@@ -160,9 +160,9 @@ thanks_good_guy.txt 9e204f247de876733be099d5fbfa9ada
 
 <h3 id="the-big-picture">The big picture</h3>
 
-<p><img src="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/LoserFS.svg" alt="The big picture of LoserFS" /></p>
+<p><img src="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/LoserFS.svg" alt="The big picture of LoserFS" /></p>
 
-<p>Our architecture supports arbitrary number of loser_peer processes. They connect to each other over <strong>UNIX domain sockets</strong>. This socket looks like a normal file, and yes, it has a filename, except that input/output to this file is handled by your process. See <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/SOCKET.md">here</a> for examples.</p>
+<p>Our architecture supports arbitrary number of loser_peer processes. They connect to each other over <strong>UNIX domain sockets</strong>. This socket looks like a normal file, and yes, it has a filename, except that input/output to this file is handled by your process. See <a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/SOCKET.md">here</a> for examples.</p>
 
 <p>In this picture, peer1 owns the socket at <code class="highlighter-rouge">/tmp/mp2-peer1.sock</code>, peer2 owns <code class="highlighter-rouge">/tmp/mp2-peer2.sock</code>, and so on. Peer1 connects to <code class="highlighter-rouge">mp2-peer2.sock</code> and other three sockets. Conversely, peer1 accepts connections from other four peers. In this way, peers talks to each other by sending/receiving bytes. You have to <strong>design the protocol between the peers</strong>.</p>
 
@@ -383,15 +383,15 @@ LoserFS depends on timestamps to sort the commits. It’s critically flawed beca
 
 <h3 id="example-test-cases">Example test cases</h3>
 
-<p>TA acknowledges the openess of this spec. Please take a look at <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/EXAMPLE.md">examples test cases</a>. Hope it make things more clear.</p>
+<p>TA acknowledges the openess of this spec. Please take a look at <a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/EXAMPLE.md">examples test cases</a>. Hope it make things more clear.</p>
 
 <h2 id="resources">Resources</h2>
 
 <ul>
-  <li>Download the <a href="https://github.com/b05902023/Systems-Programming/tree/master/MP2/README/sample_code_v1">example code</a> to boostrap your work.</li>
-  <li>You can either start from your MP1 or this example <a href="https://github.com/b05902023/Systems-Programming/tree/master/MP2/README/example_mp1_v1">MP1 code</a>.</li>
-  <li>UNIX domain socket <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/SOCKET.md">tutorial</a></li>
-  <li>Remeber to take a look at <a href="https://github.com/b05902023/Systems-Programming/blob/master/MP2/README/RULE.md">conflict resolution rules</a></li>
+  <li>Download the <a href="https://github.com/jnfem112/Systems-Programming/tree/master/MP2/README/sample_code_v1">example code</a> to boostrap your work.</li>
+  <li>You can either start from your MP1 or this example <a href="https://github.com/jnfem112/Systems-Programming/tree/master/MP2/README/example_mp1_v1">MP1 code</a>.</li>
+  <li>UNIX domain socket <a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/SOCKET.md">tutorial</a></li>
+  <li>Remeber to take a look at <a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP2/README/RULE.md">conflict resolution rules</a></li>
 </ul>
 
   </div>
