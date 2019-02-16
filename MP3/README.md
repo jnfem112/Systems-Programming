@@ -154,7 +154,7 @@ exit with code <code class="highlighter-rouge">EXIT_FAILURE</code>.</li>
 <p>https://wslab.csie.ntu.edu.tw/tips_for_workstation_usage.html</p>
 
 <h2 id="simple-judge">Simple Judge</h2>
-<p><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP3/judge.py">judge.py</a>
+<p><a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP3/judge.py">judge.py</a>
 This is a simple judge program. You can use it to test your code.
 It cover all judge steps with a small test case without bonus.</p>
 
