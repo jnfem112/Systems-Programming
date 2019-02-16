@@ -66,7 +66,7 @@
 
 <p>本次作業限定以 Bainry I/O 對 .loser_record 進行操作，且 .loser_record 必須依照此處所規定的格式：</p>
 
-<p><img src="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/loser_record.png" alt="commit struct" /></p>
+<p><img src="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/loser_record.png" alt="commit struct" /></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>其中各項意義為：
     1. number of commit : 代表是第幾次 commit，由 1 開始計算，大小為 4 bytes unsigned integer (uint32_t)
@@ -228,7 +228,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 
 <h2 id="更多範例">更多範例</h2>
 
-<p>參考<a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/Example.md">這裡</a></p>
+<p>參考<a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/EXAMPLE.md">這裡</a></p>
 
 <h2 id="實作細節">實作細節</h2>
 
@@ -298,7 +298,7 @@ loser log &lt;數量&gt; &lt;目錄&gt;
 <ul>
   <li><a href="https://zh.wikipedia.org/wiki/MD5">MD5 - 維基百科，自由的百科全書</a></li>
   <li><a href="https://www.byvoid.com/zht/blog/cpp-fstream">c++ binary io</a></li>
-  <li><a href="https://github.com/b05902023/Systems-Programming/blob/master/MP1/README/Example.md">範例頁</a></li>
+  <li><a href="https://github.com/jnfem112/Systems-Programming/blob/master/MP1/README/EXAMPLE.md">範例頁</a></li>
   <li><a href="https://zh.wikipedia.org/wiki/字节序">endian</a></li>
 </ul>
 
