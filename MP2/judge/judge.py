@@ -62,7 +62,7 @@ async def main():
         github_account = row[1]
         repo_dir =  os.path.join(
             os.path.realpath(args.REPO_DIR),
-            'SP18-{}'.format(row[0]),
+            ''.format(row[0]),
         )
         log_dir = os.path.realpath(args.log_dir)
         return judge((student_id, github_account, repo_dir, log_dir, args.log_level, args.tmp_dir, due_date, not args.keep_tmp_files))
