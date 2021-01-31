@@ -130,7 +130,7 @@ class Mp2Test:
             while True:
                 line = await proc.stdout.readline()
                 if line:
-                    logger.info('make_stdout: %s', line)
+                    logger.info('make_stdout: %s', line.decode('utf-8'))
                 else:
                     return
 
@@ -138,7 +138,7 @@ class Mp2Test:
             while True:
                 line = await proc.stderr.readline()
                 if line:
-                    logger.info('make_stderr: %s', line)
+                    logger.info('make_stderr: %s', line.decode('utf-8'))
                 else:
                     return
 
