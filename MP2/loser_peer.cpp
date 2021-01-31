@@ -54,7 +54,7 @@ void read_config(string file_name , Config &config)
 	config.number_of_peer = 0;
 	while (input_2 >> peer)
 	{
-		peer = "/tmp/mp2-" + peer + ".sock"
+		peer = "/tmp/mp2-" + peer + ".sock";
 		config.peers.push_back(peer);
 		config.number_of_peer++;
 	}
@@ -76,12 +76,12 @@ void init_socket(Config &config , int &listen_socket , vector <int> &peer_socket
 	memset(&address , 0 , sizeof(struct sockaddr_un));
 	address.sun_family = AF_UNIX;
 	strncpy(address.sun_path , config.name.c_str() , sizeof(address.sun_path) - 1);
-	bind(listen_socket , (const struct sockaddr *)&server_address , sizeof(struct sockaddr_un));
+	bind(listen_socket , (const struct sockaddr *)&address , sizeof(struct sockaddr_un));
 	listen(listen_socket , 20);
 
 	for (int i = 0 ; i < config.number_of_peer ; i++)
 	{
-		peer_socket[i] = socket(AF_UNIX , SOCK_STREAM , 0)
+		peer_socket[i] = socket(AF_UNIX , SOCK_STREAM , 0);
 		memset(&address , 0 , sizeof(struct sockaddr_un));
 		address.sun_family = AF_UNIX;
 		strncpy(address.sun_path , config.peers[i].c_str() , sizeof(address.sun_path) - 1);
@@ -114,9 +114,9 @@ void read_command(string &command , vector <string> &arguments)
 
 bool simple_copy(string source , string destination , Config &config)
 {
-	stat temp;
+	struct stat temp;
 
-	if (source[0] == '@' && stat((config.repo + "/" + source.substr(1)).c_str() , temp) != 0)
+	if (source[0] == '@' && stat((config.repo + "/" + source.substr(1)).c_str() , &temp) != 0)
 		return false;
 	else
 	{
@@ -132,6 +132,8 @@ bool simple_copy(string source , string destination , Config &config)
 		}
 
 		FILE *out_file = fopen(destination.c_str() , "wb");
+		char buffer[BUFFER_SIZE + 1] = {0};
+		int byte;
 
 		while ((byte = fread(buffer , sizeof(char) , BUFFER_SIZE , in_file)) > 0)
 			fwrite(buffer , sizeof(char) , byte , out_file);
@@ -159,7 +161,7 @@ int main(int argc , char **argv)
 	FD_ZERO(&read_set);
 	FD_ZERO(&write_set);
 	FD_SET(STDIN_FILENO , &read_set);
-	FD_SET(socket_in , &read_set);
+	FD_SET(listen_socket , &read_set);
 
 	string command;
 	vector <string> arguments(2);
