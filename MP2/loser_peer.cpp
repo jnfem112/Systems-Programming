@@ -235,7 +235,7 @@ int main(int argc , char **argv)
 		if (FD_ISSET(server_socket , &working_read_set))
 		{
 			int fd = accept(server_socket , NULL , NULL);
-			cout << "accept\n"; // DEBUG
+			// cout << "accept\n";
 			client_socket.push_back(fd);
 			FD_SET(fd , &read_set);
 			FD_SET(fd , &write_set);
@@ -251,7 +251,7 @@ int main(int argc , char **argv)
 				{
 					if (command == "cp" || command == "mv")
 					{
-						cout << "find\n"; // DEBUG
+						// cout << "find : " << config.peers[i] << "\n";
 						status = 3;
 						peer_status[i] = 3;
 						target = peer_socket[i];
@@ -288,13 +288,13 @@ int main(int argc , char **argv)
 			{
 				if ((command == "cp" || command == "mv" || command == "rm") && status == 2 && peer_status[i] == 0)
 				{
-					cout << "to : " << config.peers[i] << "\n"; // DEBUG
+					// cout << "to : " << config.peers[i] << "\n";
 					strcpy(buffer_1 , command.c_str());
 					send(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
-					cout << "send : " << buffer_1 << "\n"; // DEBUG
+					// cout << "send : " << buffer_1 << "\n";
 					strcpy(buffer_1 , source.substr(1).c_str());
 					send(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
-					cout << "send : " << buffer_1 << "\n"; // DEBUG
+					// cout << "send : " << buffer_1 << "\n";
 					peer_status[i] = 1;
 				}
 				else if (command == "exit" && status == 2 && peer_status[i] == 0)
@@ -316,10 +316,10 @@ int main(int argc , char **argv)
 				if (strcmp(buffer_1 , "cp") == 0 || strcmp(buffer_1 , "mv") == 0 || strcmp(buffer_1 , "rm") == 0)
 				{
 					command = buffer_1;
-					cout << "recv : " << command << "\n"; // DEBUG
+					// cout << "recv : " << command << "\n";
 					recv(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 					source = config.repo + "/" + buffer_1;
-					cout << "recv : " << source << "\n"; // DEBUG
+					// cout << "recv : " << source << "\n";
 					status = 4;
 					target = client_socket[i];
 				}
@@ -338,14 +338,14 @@ int main(int argc , char **argv)
 				{
 					if (!check_file_exist(source , config))
 					{
-						cout << source << " does not exist\n"; // DEBUG
+						// cout << source << " does not exist\n";
 						strcpy(buffer_1 , "fail");
 						send(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 						status = 0;
 					}
 					else
 					{
-						cout << source << " exist\n"; // DEBUG
+						// cout << source << " exist\n";
 						strcpy(buffer_1 , "success");
 						send(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 						status = 5;
@@ -376,12 +376,12 @@ int main(int argc , char **argv)
 				{
 					if (!check_file_exist(source , config))
 					{
-						cout << source << " does not exist\n"; // DEBUG
+						// cout << source << " does not exist\n";
 						strcpy(buffer_1 , "fail");
 					}
 					else
 					{
-						cout << source << " exist\n"; // DEBUG
+						// cout << source << " exist\n";
 						remove(source.c_str());
 						strcpy(buffer_1 , "success");
 					}
@@ -413,7 +413,7 @@ int main(int argc , char **argv)
 			}
 			else
 			{
-				cout << "start remote transfer\n"; // DEBUG
+				// cout << "start remote transfer\n";
 				status = 2;
 				for (int i = 0 ; i < config.number_of_peer ; i++)
 					peer_status[i] = 0;
