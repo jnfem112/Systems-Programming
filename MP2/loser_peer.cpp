@@ -37,10 +37,13 @@ struct Commit
 typedef struct Config Config;
 typedef struct Commit Commit;
 
-void read_config(string file_name , Config &config)
+bool read_config(string file_name , Config &config)
 {
 	ifstream config_file(file_name);
 	string line;
+
+	if (!config_file.is_open())
+		return false;
 
 	getline(config_file , line);
 	line = line.substr(line.find("=") + 1);
@@ -65,37 +68,48 @@ void read_config(string file_name , Config &config)
 	istringstream input_3(line);
 	input_3 >> config.repo;
 
-	return;
+	if (access(config.repo.c_str() , W_OK) == -1)
+		return false;
+
+	return true;
 }
 
-void init_socket(Config &config , int &server_socket , vector <int> &peer_socket)
+bool create_socket(Config &config , int &server_socket , vector <int> &peer_socket)
 {
 	struct sockaddr_un address;
 
 	unlink(config.name.c_str());
-	server_socket = socket(AF_UNIX , SOCK_STREAM , 0);
+	
+	if ((server_socket = socket(AF_UNIX , SOCK_STREAM , 0)) == -1)
+		return false;
+
 	memset(&address , 0 , sizeof(struct sockaddr_un));
 	address.sun_family = AF_UNIX;
 	strncpy(address.sun_path , config.name.c_str() , sizeof(address.sun_path) - 1);
-	bind(server_socket , (const struct sockaddr *)&address , sizeof(struct sockaddr_un));
-	listen(server_socket , 20);
+
+	if (bind(server_socket , (const struct sockaddr *)&address , sizeof(struct sockaddr_un)) == -1)
+		return false;
+
+	if (listen(server_socket , 20) == -1)
+		return false;
 
 	for (int i = 0 ; i < config.number_of_peer ; i++)
-		peer_socket[i] = socket(AF_UNIX , SOCK_STREAM , 0);
+		if ((peer_socket[i] = socket(AF_UNIX , SOCK_STREAM , 0)) == -1)
+			return false;
 
-	return;
+	return true;
 }
 
-int connect_socket(Config &config , vector <int> &peer_socket , int index)
+bool connect_socket(Config &config , vector <int> &peer_socket , int index)
 {
 	struct sockaddr_un address;
 	memset(&address , 0 , sizeof(struct sockaddr_un));
 	address.sun_family = AF_UNIX;
 	strncpy(address.sun_path , config.peers[index].c_str() , sizeof(address.sun_path) - 1);
-	return connect(peer_socket[index] , (const struct sockaddr *)&address , sizeof(struct sockaddr_un));
+	return connect(peer_socket[index] , (const struct sockaddr *)&address , sizeof(struct sockaddr_un)) != -1;
 }
 
-void close_socket(Config &config , int &server_socket , vector <int> &peer_socket)
+void close_socket(Config &config , int server_socket , vector <int> &peer_socket)
 {
 	close(server_socket);
 	unlink(config.name.c_str());
@@ -148,11 +162,11 @@ bool simple_copy(string source , string destination , Config &config)
 		}
 
 		FILE *out_file = fopen(destination.c_str() , "wb");
-		char buffer_1[BUFFER_SIZE + 1] = {0};
+		char buffer[BUFFER_SIZE + 1] = {0};
 		int byte;
 
-		while ((byte = fread(buffer_1 , sizeof(char) , BUFFER_SIZE , in_file)) > 0)
-			fwrite(buffer_1 , sizeof(char) , byte , out_file);
+		while ((byte = fread(buffer , sizeof(char) , BUFFER_SIZE , in_file)) > 0)
+			fwrite(buffer , sizeof(char) , byte , out_file);
 
 		cout << "success\n";
 
@@ -166,7 +180,9 @@ bool simple_copy(string source , string destination , Config &config)
 int main(int argc , char **argv)
 {
 	Config config;
-	read_config(argv[1] , config);
+
+	if (!read_config(argv[1] , config))
+		return EXIT_FAILURE;
 
 	string command;
 	vector <string> arguments(2);
@@ -180,9 +196,11 @@ int main(int argc , char **argv)
 	bool finish = false;
 
 	int server_socket;
-	vector <int> peer_socket(config.number_of_peer) , client_socket;
+	vector <int> peer_socket(config.number_of_peer) , client_socket(0);
 	vector <bool> connected(config.number_of_peer , false);
-	init_socket(config , server_socket , peer_socket);
+	
+	if (!create_socket(config , server_socket , peer_socket))
+		return EXIT_FAILURE;
 
 	int max_fd = sysconf(_SC_OPEN_MAX);
 	fd_set read_set , write_set;
@@ -194,7 +212,7 @@ int main(int argc , char **argv)
 	while (!finish)
 	{
 		for (int i = 0 ; i < config.number_of_peer ; i++)
-			if (!connected[i] && connect_socket(config , peer_socket , i) != -1)
+			if (!connected[i] && connect_socket(config , peer_socket , i))
 			{
 				connected[i] = true;
 				FD_SET(peer_socket[i] , &read_set);
@@ -217,6 +235,7 @@ int main(int argc , char **argv)
 		if (FD_ISSET(server_socket , &working_read_set))
 		{
 			int fd = accept(server_socket , NULL , NULL);
+			cout << "accept\n"; // DEBUG
 			client_socket.push_back(fd);
 			FD_SET(fd , &read_set);
 			FD_SET(fd , &write_set);
@@ -227,18 +246,19 @@ int main(int argc , char **argv)
 			if (FD_ISSET(peer_socket[i] , &working_read_set))
 			{
 				recv(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
+
 				if (strcmp(buffer_1 , "success") == 0)
 				{
 					if (command == "cp" || command == "mv")
 					{
+						cout << "find\n"; // DEBUG
 						status = 3;
-						peer_status[i] = 2;
+						peer_status[i] = 3;
 						target = peer_socket[i];
 						out_file = fopen(destination.c_str() , "wb");
 					}
 					else if (command == "rm")
 					{
-						cout << "success\n";
 						status = 0;
 					}
 				}
@@ -250,16 +270,16 @@ int main(int argc , char **argv)
 				{
 					byte = atoi(buffer_1);
 
-					if (byte == 0)
+					if (byte != 0)
+					{
+						recv(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
+						fwrite(buffer_1 , sizeof(char) , byte , out_file);
+					}
+					else
 					{
 						fclose(out_file);
 						cout << "success\n";
 						status = 0;
-					}
-					else
-					{
-						recv(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
-						fwrite(buffer_1 , sizeof(char) , byte , out_file);
 					}
 				}
 			}
@@ -268,12 +288,13 @@ int main(int argc , char **argv)
 			{
 				if ((command == "cp" || command == "mv" || command == "rm") && status == 2 && peer_status[i] == 0)
 				{
+					cout << "to : " << config.peers[i] << "\n"; // DEBUG
 					strcpy(buffer_1 , command.c_str());
 					send(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
-					if (source[0] == '@')
-						source = source.substr(1);
-					strcpy(buffer_1 , source.c_str());
+					cout << "send : " << buffer_1 << "\n"; // DEBUG
+					strcpy(buffer_1 , source.substr(1).c_str());
 					send(peer_socket[i] , buffer_1 , BUFFER_SIZE , 0);
+					cout << "send : " << buffer_1 << "\n"; // DEBUG
 					peer_status[i] = 1;
 				}
 				else if (command == "exit" && status == 2 && peer_status[i] == 0)
@@ -291,11 +312,14 @@ int main(int argc , char **argv)
 			if (FD_ISSET(client_socket[i] , &working_read_set))
 			{
 				recv(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
+
 				if (strcmp(buffer_1 , "cp") == 0 || strcmp(buffer_1 , "mv") == 0 || strcmp(buffer_1 , "rm") == 0)
 				{
 					command = buffer_1;
+					cout << "recv : " << command << "\n"; // DEBUG
 					recv(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 					source = config.repo + "/" + buffer_1;
+					cout << "recv : " << source << "\n"; // DEBUG
 					status = 4;
 					target = client_socket[i];
 				}
@@ -314,14 +338,14 @@ int main(int argc , char **argv)
 				{
 					if (!check_file_exist(source , config))
 					{
-						cout << "not exist : " << source << "\n";
+						cout << source << " does not exist\n"; // DEBUG
 						strcpy(buffer_1 , "fail");
 						send(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 						status = 0;
 					}
 					else
 					{
-						cout << "exist : " << source << "\n";
+						cout << source << " exist\n"; // DEBUG
 						strcpy(buffer_1 , "success");
 						send(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
 						status = 5;
@@ -333,13 +357,18 @@ int main(int argc , char **argv)
 					byte = fread(buffer_2 , sizeof(char) , BUFFER_SIZE , in_file);
 					sprintf(buffer_1 , "%d" , byte);
 					send(client_socket[i] , buffer_1 , BUFFER_SIZE , 0);
+
 					if (byte > 0)
+					{
 						send(client_socket[i] , buffer_2 , BUFFER_SIZE , 0);
+					}
 					else
 					{
 						fclose(in_file);
+
 						if (command == "mv")
 							remove(source.c_str());
+
 						status = 0;
 					}
 				}
@@ -347,10 +376,12 @@ int main(int argc , char **argv)
 				{
 					if (!check_file_exist(source , config))
 					{
+						cout << source << " does not exist\n"; // DEBUG
 						strcpy(buffer_1 , "fail");
 					}
 					else
 					{
+						cout << source << " exist\n"; // DEBUG
 						remove(source.c_str());
 						strcpy(buffer_1 , "success");
 					}
@@ -382,15 +413,28 @@ int main(int argc , char **argv)
 			}
 			else
 			{
+				cout << "start remote transfer\n"; // DEBUG
 				status = 2;
 				for (int i = 0 ; i < config.number_of_peer ; i++)
 					peer_status[i] = 0;
 			}
 		}
+		else if ((command == "cp" || command == "mv") && status == 2)
+		{
+			bool fail = true;
+			for (int i = 0 ; i < config.number_of_peer && fail ; i++)
+				if (peer_status[i] != 2)
+					fail = false;
+
+			if (fail)
+			{
+				cout << "fail\n";
+				status = 0;
+			}
+		}
 		else if (command == "rm" && status == 1)
 		{
 			source = arguments[0];
-			source = source.substr(1);
 
 			if (check_file_exist(source , config))
 			{
@@ -421,5 +465,5 @@ int main(int argc , char **argv)
 
 	close_socket(config , server_socket , peer_socket);
 	cout << "bye\n";
-	return 0;
+	return EXIT_SUCCESS;
 }
